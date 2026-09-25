@@ -14,7 +14,7 @@ This project demonstrates the implementation of a Logistics Operations Analysis 
 
 ## Project Structure
 
-1. **Database Setup**
+* **Database Setup**
 ![Logistics Database ERD](database%20ERD.png)
 * **Database Creation**: Created the PostgreSQL database for the logistics operations analysis project.
 * **Table Creation**: Created tables for customers, drivers, trucks, trailers, loads, trips, routes, facilities, fuel purchases, maintenance records, delivery events, driver monthly metrics, truck utilization metrics, and safety incidents. And established the relationships between them using primary and foreign keys. Each table includes relevant columns and relationships.
@@ -267,3 +267,12 @@ CREATE TABLE IF NOT EXISTS delivery_events (
 * **Data Import**: Imported the CSV datasets into their respective PostgreSQL tables using pgAdmin.
 * **Dataset Source**: *(https://www.kaggle.com/datasets/yogape/logistics-operations-database)*
 * **Dataset Files**: The original CSV files used in the project are available in this repository for reference and reproducibility.
+
+## Data Quality Checks
+```sql
+-- check for NULL values in customers table
+SELECT * FROM customers
+WHERE customer_id IS NULL OR customer_name IS NULL OR customer_type IS NULL OR credit_terms_days IS NULL
+	OR primary_freight_type IS NULL OR account_status IS NULL OR contract_start_date IS NULL
+	OR annual_revenue_potential IS NULL;
+```
