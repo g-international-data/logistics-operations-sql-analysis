@@ -1,2 +1,2 @@
-# logistics-operations-sql-analysis
+# Logistics Operations SQL Analysis
 PostgreSQL SQL analysis of logistics operations, covering drivers, fleet performance, fuel consumption, maintenance, delivery performance, revenue, and operational efficiency.
