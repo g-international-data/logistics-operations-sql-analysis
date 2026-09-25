@@ -15,3 +15,10 @@ This project demonstrates the implementation of a Logistics Operations Analysis 
 4. **Perform Advanced SQL Queries**: Utilize joins, CTEs, aggregate functions, window functions, `RANK()`, `LAG()`, and date-based functions to answer complex business questions.
 
 5. **Generate Business Insights**: Identify operational trends, potential cost-reduction opportunities, and areas requiring management attention based on key performance indicators.
+
+## Project Structure
+
+1. **Database Setup**
+* **Database Creation**: Created a database.
+
+* **Table Creation**: Created tables for customers, drivers, trucks, trailers, loads, trips, routes, facilities, fuel purchases, maintenance records, delivery events, driver monthly metrics, truck utilization metrics, and safety incidents. Each table includes relevant columns and relationships.
