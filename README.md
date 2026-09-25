@@ -564,3 +564,5 @@ SELECT
 FROM monthly_performance
 ORDER BY 1;
 ```
+
+All business questions and their corresponding SQL solutions are documented in the project file. [View All SQL Analysis Questions](sql-analysis-questions.sql)
