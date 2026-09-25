@@ -566,3 +566,22 @@ ORDER BY 1;
 ```
 
 All business questions and their corresponding SQL solutions are documented in the project file. [View All SQL Analysis Questions](sql-analysis-questions.sql)
+
+## Reports
+
+* **Database Schema**: Detailed table structures, primary keys, foreign keys, and relationships between logistics operational data.
+* **Data Analysis**: Insights into driver performance, fleet utilization, fuel consumption, maintenance costs, delivery performance, revenue, and operational efficiency.
+* **Summary Reports**: Aggregated results on driver performance, truck utilization, fuel efficiency, maintenance and downtime, delivery performance, and key operational trends.
+
+## Conclusion
+
+This project demonstrates the use of PostgreSQL and SQL to analyze logistics operations and transform operational data into meaningful business insights. Through database design, data quality checks, and advanced SQL analysis, the project examined key areas including driver performance, fleet utilization, fuel consumption, maintenance, delivery performance, and operational efficiency. The analysis highlights how SQL can be used to support data-driven decision-making and identify areas for operational improvement.
+
+## How to Use
+
+1. **Set Up PostgreSQL**: Install PostgreSQL and pgAdmin on your system.
+2. **Create the Database**: Create a new PostgreSQL database for the project.
+3. **Create the Tables**: Run the `create-tables.sql` file to create the database tables and relationships.
+4. **Import the Data**: Import the provided CSV files into their respective PostgreSQL tables using pgAdmin.
+5. **Run the SQL Queries**: Execute the queries in `data-quality-checks.sql` and `sql-analysis-questions.sql` to perform the data quality checks and logistics analysis.
+6. **Explore the Results**: Review the query results and reports to understand the operational insights generated from the dataset.
