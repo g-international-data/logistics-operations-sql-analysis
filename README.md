@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS delivery_events (
 * **Dataset Source**: *(https://www.kaggle.com/datasets/yogape/logistics-operations-database)*
 * **Dataset Files**: The original CSV files used in the project are available in this repository for reference and reproducibility.
 
-## Data Quality Checks
+### Data Quality Checks
 ```sql
 -- check for NULL values in customers table
 SELECT * FROM customers
@@ -289,3 +289,11 @@ FROM customers
 GROUP BY 1,2,3,4,5,6 
 HAVING COUNT(*) > 1;
 ```
+
+Data quality checks were performed across the logistics tables to identify
+missing values, duplicate records, and potential data inconsistencies.
+
+The checks included NULL validation, duplicate detection, and consistency
+checks across the relevant tables.
+
+[View All Data Quality Queries](data-quality-checks.sql)
