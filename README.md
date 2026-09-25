@@ -275,4 +275,17 @@ SELECT * FROM customers
 WHERE customer_id IS NULL OR customer_name IS NULL OR customer_type IS NULL OR credit_terms_days IS NULL
 	OR primary_freight_type IS NULL OR account_status IS NULL OR contract_start_date IS NULL
 	OR annual_revenue_potential IS NULL;
+	
+-- rename column for clearer naming
+ALTER TABLE customers
+RENAME COLUMN customer_nanme TO customer_name;
+
+-- check for duplicates records
+SELECT
+	customer_name, credit_terms_days, primary_freight_type, account_status, contract_start_date, 
+	annual_revenue_potential,
+	COUNT(*) AS duplicate_check
+FROM customers
+GROUP BY 1,2,3,4,5,6 
+HAVING COUNT(*) > 1;
 ```
