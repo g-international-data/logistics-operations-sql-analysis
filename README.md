@@ -7,18 +7,13 @@ This project demonstrates the implementation of a Logistics Operations Analysis 
 ## Objectives
 
 1. **Set up the Logistics Operations Database**: Create and populate the database with tables for customers, drivers, trucks, trailers, loads, trips, routes, facilities, fuel purchases, maintenance records, delivery events, and other operational data.
-
 2. **Perform Data Quality Checks**: Identify missing values, duplicate records, and potential data inconsistencies to ensure data reliability.
-
 3. **Perform Logistics Operations Analysis**: Analyze driver performance, fleet utilization, fuel consumption, maintenance costs, delivery performance, revenue, mileage, downtime, and overall operational efficiency.
-
 4. **Perform Advanced SQL Queries**: Utilize joins, CTEs, aggregate functions, window functions, `RANK()`, `LAG()`, and date-based functions to answer complex business questions.
-
 5. **Generate Business Insights**: Identify operational trends, potential cost-reduction opportunities, and areas requiring management attention based on key performance indicators.
 
 ## Project Structure
 
 1. **Database Setup**
 * **Database Creation**: Created a database.
-
 * **Table Creation**: Created tables for customers, drivers, trucks, trailers, loads, trips, routes, facilities, fuel purchases, maintenance records, delivery events, driver monthly metrics, truck utilization metrics, and safety incidents. Each table includes relevant columns and relationships.
