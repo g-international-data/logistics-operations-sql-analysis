@@ -19,4 +19,6 @@ This project demonstrates the implementation of a Logistics Operations Analysis 
 * **Database Creation**: Created a database.
 * **Table Creation**: Created tables for customers, drivers, trucks, trailers, loads, trips, routes, facilities, fuel purchases, maintenance records, delivery events, driver monthly metrics, truck utilization metrics, and safety incidents. Each table includes relevant columns and relationships.
 
-![View Create Tables SQL](create-tables.sql)
+```
+[View Create Tables SQL](create-tables.sql)
+```
