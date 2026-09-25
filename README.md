@@ -290,10 +290,125 @@ GROUP BY 1,2,3,4,5,6
 HAVING COUNT(*) > 1;
 ```
 
-Data quality checks were performed across the logistics tables to identify
-missing values, duplicate records, and potential data inconsistencies.
-
-The checks included NULL validation, duplicate detection, and consistency
-checks across the relevant tables.
-
+Data quality checks were performed across the logistics tables to identify missing values, duplicate records, and potential data inconsistencies.
+The checks included NULL validation, duplicate detection, and consistency checks across the relevant tables.
 [View All Data Quality Queries](data-quality-checks.sql)
+
+## Operations Analysis
+
+### Question 1: How many trucks, trailers, drivers, customers, and facilities are in the database?
+
+```sql
+SELECT COUNT(DISTINCT truck_id) FROM trucks;
+SELECT COUNT(DISTINCT trailer_id) FROM trailers;
+SELECT COUNT(DISTINCT driver_id) FROM drivers;
+SELECT COUNT(DISTINCT customer_id) FROM customers;
+SELECT COUNT(DISTINCT facility_id) FROM facilities;
+```
+
+### Question 2: How many drivers are currently represented in the drivers table, and how are they distributed by their employment status?
+
+```sql
+SELECT 
+	employment_status,
+	COUNT(driver_id) AS employment_status_count
+FROM drivers
+GROUP BY 1
+ORDER BY 1 ASC;
+```
+
+### Question 3: What is the total distance traveled, average distance per trip, and longest trip recorded in the trips table?
+
+```sql
+SELECT 
+	SUM(actual_distance_miles) AS total_distance_travelled_in_miles,
+	ROUND(AVG(actual_distance_miles),1) AS average_distance_per_trip_in_miles,
+	MAX(actual_duration_hours + idle_time_hours) AS longest_trip_recorded_in_hours
+FROM trips;
+```
+
+### Question 4: Which drivers completed the most trips?
+
+```sql
+SELECT
+	driver_id,
+	COUNT(*) AS total_trips_completed
+FROM trips
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 2;
+```
+
+### Question 5: Which trucks have the best average fuel efficiency (MPG) based on their recorded trips?
+
+```sql
+SELECT
+	truck_id,
+	MAX(average_mpg) AS best_avg_fuel_efficiency
+FROM trips
+GROUP BY 1
+ORDER BY 2 DESC;
+```
+
+### Question 6: Which customers generated the highest number of loads?
+
+```sql
+SELECT 
+	customer_id,
+	COUNT(*) AS highest_load_generated_by_customer
+FROM loads
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 1;
+```
+
+### Question 7: Which trucks consumed the most fuel, and how does their fuel consumption compare with the distance they traveled?
+
+```sql
+SELECT
+    truck_id,
+    SUM(fuel_gallons_used) AS total_fuel_used,
+    SUM(actual_distance_miles) AS total_distance_traveled,
+    SUM(fuel_gallons_used) / SUM(actual_distance_miles) AS fuel_per_mile
+FROM trips
+GROUP BY 1
+ORDER BY 1 DESC
+LIMIT 5;
+```
+
+### Question 8: Rank drivers based on their total distance traveled and show their position within the overall driver population?
+
+```sql
+SELECT  
+	d.driver_id,
+	d.first_name,
+	d.last_name,
+	SUM(t.actual_distance_miles) AS total_distance_travelled,
+	RANK() OVER(ORDER BY SUM(t.actual_distance_miles) DESC) AS position_by_distance_travelled
+FROM drivers d
+INNER JOIN trips t
+	ON d.driver_id = t.driver_id
+GROUP BY 1,2,3;
+```
+
+### Questioin 9: For each month, identify the drivers who recorded the highest number of trips?
+
+```sql
+WITH driver_monthly_trip AS (
+	SELECT
+		driver_id,
+		EXTRACT(MONTH FROM dispatch_date) AS monthly_trip,
+		TO_CHAR(dispatch_date,'Month') AS month_name,
+		COUNT(*) AS number_of_trip
+	FROM trips
+	WHERE driver_id IS NOT NULL
+	GROUP BY 1,2,3
+)
+SELECT
+	driver_id,
+	month_name,
+	number_of_trip,
+	ROW_NUMBER() OVER(PARTITION BY monthly_trip ORDER BY number_of_trip DESC)
+	AS driver_with_highest_number_of_trip_per_month
+FROM driver_monthly_trip;
+```
